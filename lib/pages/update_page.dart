@@ -17,50 +17,53 @@ class _UpdatePageState extends State<UpdatePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text('Edit page'),
-          centerTitle: true,
-          backgroundColor: Colors.blue,
-        ),
+    return GetBuilder<UpdateController>(
+        init: UpdateController(),
+        builder: (context)=>Scaffold(
+      appBar: AppBar(
+        title: Text('Edit page'),
+        centerTitle: true,
+        backgroundColor: Colors.blue,
+      ),
 
-        body: Container(
-          padding:const EdgeInsets.all(30),
-          child: Column(
-            children: [
-              TextField(
-                controller:Get.find<UpdateController>().updateControllerTitle ,
-                decoration:const InputDecoration(
-                  labelText: "titni yangilang",
-                  border: OutlineInputBorder(),
-                ),
+      body:
+      Container(
+        padding:const EdgeInsets.all(30),
+        child: Column(
+          children: [
+            TextField(
+              controller:Get.find<UpdateController>().updateControllerTitle ,
+              decoration:const InputDecoration(
+                labelText: "titni yangilang",
+                border: OutlineInputBorder(),
               ),
-              const SizedBox(
-                height: 20,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            TextField(
+              controller: Get.find<UpdateController>().updateControllerBody ,
+              decoration:const InputDecoration(
+                labelText: "bodyni yangilang",
+                border: OutlineInputBorder(),
               ),
-              TextField(
-                controller: Get.find<UpdateController>().updateControllerBody ,
-                decoration:const InputDecoration(
-                  labelText: "bodyni yangilang",
-                  border: OutlineInputBorder(),
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  setState(() {
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
 
-                    Get.find<UpdateController>().apiPostEdit(Get.find<UpdateController>().id.value, Get.find<UpdateController>().updateControllerTitle.text,
-                        Get.find<UpdateController>().updateControllerBody.text, Get.find<UpdateController>().userId.value);
-                  });
-                },
-                child: const Text("Yangilash"),
-              ),
-            ],
-          ),
+                  Get.find<UpdateController>().apiPostEdit(Get.find<UpdateController>().id, Get.find<UpdateController>().updateControllerTitle.text,
+                      Get.find<UpdateController>().updateControllerBody.text, Get.find<UpdateController>().userId);
+                });
+              },
+              child: const Text("Yangilash"),
+            ),
+          ],
         ),
-    );
+      ),
+    ));
   }
 }
