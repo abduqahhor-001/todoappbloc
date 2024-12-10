@@ -28,7 +28,7 @@ class _ListPostOneState extends State<ListPostOne> {
   late Post post ;
   Future<void> _fetchPost() async {
     var response = await Network.GET(
-      Network.API_LIST_ONE + "${widget.id}",
+      Network.API_LIST + "/${widget.id}",
       Network.paramsEmpty(),
     );
 
