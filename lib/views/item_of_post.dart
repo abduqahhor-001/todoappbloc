@@ -1,15 +1,18 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
+
 import 'package:todoappbloc/controllers/home_controller.dart';
 import 'package:todoappbloc/controllers/update_controller.dart';
+import 'package:todoappbloc/pages/list_post_one.dart';
 import 'package:todoappbloc/pages/update_page.dart';
 
 import '../model/post_model.dart';
 
 
-Widget itemOfPost(Post post ,HomeController homeController , UpdateController updateController ) {
+Widget itemOfPost(Post post ,HomeController homeController , UpdateController updateController , BuildContext context ) {
 
   return Container(
     margin:const EdgeInsets.only(bottom: 10),
@@ -28,8 +31,8 @@ Widget itemOfPost(Post post ,HomeController homeController , UpdateController up
           SlidableAction(
             onPressed: (context)  {
 
-              updateController.id.value = post.id;
-              updateController.userId.value=post.userId;
+              updateController.id = post.id;
+              updateController.userId=post.userId;
               updateController.updateControllerTitle.text = post.title;
               updateController.updateControllerBody.text = post.body;
 
@@ -59,14 +62,23 @@ Widget itemOfPost(Post post ,HomeController homeController , UpdateController up
           ),
         ],
       ),
-      child: ListTile(
+      child: GestureDetector(
+        onTap: (){
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+              builder: (context) => ListPostOne(post.id),
+          ));
+        },
+        child: ListTile(
 
-        title: Text(post.title,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-        subtitle: Text(post.body , style: const TextStyle(fontSize: 14)),
-        isThreeLine: true,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      ),
+          title: Text(post.title,
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+          subtitle: Text(post.body , style: const TextStyle(fontSize: 14)),
+          isThreeLine: true,
+          contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        ),
+      )
     ),
   );
 }

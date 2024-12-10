@@ -11,6 +11,7 @@ class Network {
   /* Http Apis */
 
   static String API_LIST = "/posts";
+  static String API_LIST_ONE = "/posts/";//{id}
   static String API_CREATE = "/posts";
   static String API_UPDATE = "/posts/"; //{id}
   static String API_DELETE = "/posts/"; //{id}
@@ -26,6 +27,8 @@ class Network {
     }
     return null;
   }
+
+
 
   static Future<String?> POST(String api, Map<String, String> params) async {
     print(params.toString());

@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
                   itemCount:_controller.item.length,
                   itemBuilder: (context, index) {
                     var post = _controller.item[index]!;
-                    return itemOfPost(post , _controller ,_controllerUpdate);
+                    return itemOfPost(post , _controller ,_controllerUpdate,context);
                   }))
         ],
       ),),
